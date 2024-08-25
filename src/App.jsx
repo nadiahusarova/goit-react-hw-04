@@ -4,6 +4,7 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "./components/ImageModal/ImageModal";
 import axios from "axios";
 import "./App.css";
 
@@ -16,6 +17,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     if (!searchTerm) return;
@@ -47,13 +49,17 @@ export default function App() {
   };
 
   const handleImageClick = (image) => {
-    console.log("Image clicked:", image);
+    setSelectedImage(image);
   };
 
   const loadMoreImages = () => {
     if (page < totalPages) {
       setPage((prevPage) => prevPage + 1);
     }
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
   };
 
   return (
@@ -66,6 +72,13 @@ export default function App() {
       )}
       {images.length > 0 && !isLoading && page < totalPages && (
         <LoadMoreBtn onClick={loadMoreImages} />
+      )}
+      {selectedImage && (
+        <ImageModal
+          isOpen={!!selectedImage}
+          onClose={closeModal}
+          image={selectedImage}
+        />
       )}
     </div>
   );
