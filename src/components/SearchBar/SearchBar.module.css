@@ -2,7 +2,7 @@
 .header {
     padding: 20px;
     text-align: center;
-    background-color: #b6ffbc;
+    background-color: #80e583d2;
     border-radius: 8px;
   }
   
@@ -28,6 +28,6 @@
   }
   
   .button:hover {
-    background-color: #45a049;
+    background-color: #1b8520;
   }
   
