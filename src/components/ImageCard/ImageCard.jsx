@@ -1,13 +1,16 @@
-import React from "react";
-import s from "./ImageCard.module.css";
+import React from 'react';
+import s from './ImageCard.module.css';
 
-const ImageCard = ({ image, onImageClick }) => {
+const ImageCard = ({ image, onClick }) => {
   return (
-    <li className={s.card}>
-      <div onClick={() => onImageClick(image)}>
-        <img src={image.urls.small} alt={image.alt_description || 'Image'} className={s.image} />
-      </div>
-    </li>
+    <div className={s.imageCard}>
+      <img
+        src={image.urls.small}
+        alt={image.alt_description || 'Image'}
+        className={s.image}
+        onClick={onClick} 
+      />
+    </div>
   );
 };
 

@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import Loader from "./components/Loader/Loader";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/ImageModal/ImageModal";
-import axios from "axios";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import SearchBar from './components/SearchBar/SearchBar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import Loader from './components/Loader/Loader';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
+import ImageModal from './components/ImageModal/ImageModal';
+import axios from 'axios';
+import './App.css';
 
-const ACCESS_KEY = "9vhbMiaLrWG-vmsc6FvETUigSWziqEPsqlj9Ebk_5bk";
+const ACCESS_KEY = '9vhbMiaLrWG-vmsc6FvETUigSWziqEPsqlj9Ebk_5bk';
 
 export default function App() {
   const [images, setImages] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
@@ -33,7 +33,7 @@ export default function App() {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
         setTotalPages(response.data.total_pages);
       } catch (error) {
-        setError("OOOPS! Something went wrong. Try again later.");
+        setError('OOOPS! Something went wrong. Try again later.');
       } finally {
         setIsLoading(false);
       }
@@ -74,11 +74,7 @@ export default function App() {
         <LoadMoreBtn onClick={loadMoreImages} />
       )}
       {selectedImage && (
-        <ImageModal
-          isOpen={!!selectedImage}
-          onClose={closeModal}
-          image={selectedImage}
-        />
+        <ImageModal image={selectedImage} onClose={closeModal} />
       )}
     </div>
   );
